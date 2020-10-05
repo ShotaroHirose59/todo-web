@@ -77,37 +77,37 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.state.currentUser;
+      return this.$store.state.currentUser
     },
     items() {
       if (this.user) {
         return [
           {
-            icon: "mdi-apps",
-            title: "Todos",
-            to: "/"
+            icon: 'mdi-apps',
+            title: 'Todos',
+            to: '/',
           },
           {
-            icon: "mdi-chart-bubble",
-            title: "mypage",
-            to: "/mypage"
-          }
-        ];
+            icon: 'mdi-chart-bubble',
+            title: 'mypage',
+            to: '/mypage',
+          },
+        ]
       } else {
         return [
           {
-            icon: "mdi-apps",
-            title: "ログイン",
-            to: "/login"
+            icon: 'mdi-apps',
+            title: 'ログイン',
+            to: '/login',
           },
           {
-            icon: "mdi-chart-bubble",
-            title: "新規登録",
-            to: "/signup"
-          }
-        ];
+            icon: 'mdi-chart-bubble',
+            title: '新規登録',
+            to: '/signup',
+          },
+        ]
       }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-if="user">
-      <p>Email: {{user.email}}</p>
-      <p>ユーザー名: {{user.name}}</p>
+      <p>Email: {{ user.email }}</p>
+      <p>ユーザー名: {{ user.name }}</p>
     </div>
     <v-btn @click="logOut">ログアウト</v-btn>
   </div>
@@ -15,7 +15,7 @@ export default {
   computed: {
     user() {
       return this.$store.state.currentUser
-    }
+    },
   },
   methods: {
     logOut() {
@@ -26,13 +26,12 @@ export default {
           this.$store.commit('setUser', null)
           this.$router.push('/login')
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error)
         })
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
