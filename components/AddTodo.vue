@@ -21,6 +21,8 @@
 export default {
   props: {
     user: {
+      type: Object,
+      required: true,
       id: {
         type: Number,
         required: true,
