@@ -44,6 +44,13 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
+          this.$store.commit('setSuccessMessage', {
+            status: true,
+            message: 'ログインしました',
+          })
+          setTimeout(() => {
+            this.$store.commit('setSuccessMessage', {})
+          }, 2000) // 2秒後に隠す
           this.$router.push('/')
         })
         .catch((error) => {

@@ -1,7 +1,8 @@
 <template>
   <v-app dark>
     <div>
-      <Loading></Loading>
+      <Success />
+      <Loading />
     </div>
     <v-navigation-drawer
       v-model="drawer"
@@ -66,11 +67,13 @@
 </template>
 
 <script>
-import Loading from '@/components/Loading' // 追加
+import Loading from '@/components/Loading'
+import Success from '@/components/Success'
 
 export default {
   components: {
-    Loading, // 追加
+    Loading,
+    Success,
   },
   data() {
     return {

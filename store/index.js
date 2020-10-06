@@ -8,6 +8,10 @@ const store = () => {
     state: {
       currentUser: null,
       loading: false,
+      successMessage: {
+        status: false,
+        message: '',
+      },
     },
     mutations: {
       setUser(state, payload) {
@@ -15,6 +19,9 @@ const store = () => {
       },
       setLoading(state, payload) {
         state.loading = payload
+      },
+      setSuccessMessage(state, payload) {
+        state.successMessage = payload
       },
     },
     actions: {},
