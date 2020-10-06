@@ -19,6 +19,14 @@
 </template>
 <script>
 export default {
+  props: {
+    user: {
+      id: {
+        type: Number,
+        required: true,
+      },
+    },
+  },
   data() {
     return {
       title: '',
@@ -26,7 +34,11 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$emit('submit', this.title)
+      const todo = {
+        title: this.title,
+        user_id: this.user.id,
+      }
+      this.$emit('submit', todo)
       this.title = ''
     },
   },
