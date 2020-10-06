@@ -29,5 +29,25 @@ const actions = {
         })(error.code)
       })
   },
+  logOut({ commit }) {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        commit('setSuccessMessage', {
+          status: true,
+          message: 'ログアウトしました',
+        })
+        setTimeout(() => {
+          commit('setSuccessMessage', {})
+        }, 2000) // 2秒後に隠す
+        commit('setUser', null)
+        this.$router.push('/login')
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  },
 }
+
 export default actions
