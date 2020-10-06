@@ -43,9 +43,6 @@
 </template>
 
 <script>
-import firebase from '@/plugins/firebase'
-import axios from '@/plugins/axios'
-
 export default {
   fetch({ store, redirect }) {
     store.watch(
@@ -74,35 +71,11 @@ export default {
         this.error = 'パスワードとパスワード確認が一致していません'
       }
       this.$store.commit('setLoading', true) // ローディングをonにする
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.email, this.password)
-        .then((res) => {
-          const user = {
-            email: res.user.email,
-            name: this.name,
-            uid: res.user.uid,
-          }
-          axios.post('/v1/users', { user }).then((res) => {
-            this.$store.commit('setLoading', false) // ローディングをoffにする
-            this.$store.commit('setUser', res.data) // promiseの値をstoreに入れる
-            this.$router.push('/')
-          })
-        })
-        .catch((error) => {
-          this.error = ((code) => {
-            switch (code) {
-              case 'auth/email-already-in-use':
-                return '既にそのメールアドレスは使われています'
-              case 'auth/wrong-password':
-                return '※パスワードが正しくありません'
-              case 'auth/weak-password':
-                return '※パスワードは最低6文字以上にしてください'
-              default:
-                return '※メールアドレスとパスワードをご確認ください'
-            }
-          })(error.code)
-        })
+      this.$store.dispatch('signup', {
+        email: this.email,
+        password: this.password,
+        name: this.name,
+      })
     },
   },
 }
