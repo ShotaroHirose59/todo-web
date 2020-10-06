@@ -63,6 +63,7 @@ export default {
       if (this.password !== this.passwordConfirm) {
         this.error = 'パスワードとパスワード確認が一致していません'
       }
+      this.$store.commit('setLoading', true) // ローディングをonにする
       firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
@@ -72,7 +73,9 @@ export default {
             name: this.name,
             uid: res.user.uid,
           }
-          axios.post('/v1/users', { user }).then(() => {
+          axios.post('/v1/users', { user }).then((res) => {
+            this.$store.commit('setLoading', false) // ローディングをoffにする
+            this.$store.commit('setUser', res.data) // promiseの値をstoreに入れる
             this.$router.push('/')
           })
         })
