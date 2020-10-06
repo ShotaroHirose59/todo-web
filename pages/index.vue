@@ -28,6 +28,13 @@ export default {
         ...this.user,
         todos: [...this.user.todos, data],
       })
+      this.$store.commit('setSuccessMessage', {
+        status: true,
+        message: 'Todoを作成しました',
+      })
+      setTimeout(() => {
+        this.$store.commit('setSuccessMessage', {})
+      }, 2000) // 2秒後に隠す
     },
   },
 }
